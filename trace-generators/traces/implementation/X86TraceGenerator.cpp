@@ -930,7 +930,6 @@ void trace::X86TraceGenerator::initialize(const executive::ExecutableKernel& ker
     ifstream kernel_info_file;
 
     kernel_info_file.open(kernel_info_path);
-
     string kernel_name;
     int register_num;
     int sharedmem;
@@ -1088,6 +1087,7 @@ void trace::X86TraceGenerator::initialize(const executive::ExecutableKernel& ker
   kernel_config_file.append("kernel_config.txt");
   txt_kernel_config_file.open(kernel_config_file.c_str(), std::ios_base::app);
 
+  
   // open kernel configuration file
   if (init == false) {
     txt_kernel_config_file << "newptx\n";
@@ -1148,6 +1148,17 @@ void trace::X86TraceGenerator::initialize(const executive::ExecutableKernel& ker
   //////////////////////////////////////
 
 
+  string readable_trace_file = trace_path;
+  readable_trace_file.append(kernel_name);
+  readable_trace_file.append("readable_trace.txt");
+  
+  if(txt_readable_trace_file.is_open()){
+      txt_readable_trace_file.close();
+      txt_readable_trace_file.clear();
+  }
+  
+  txt_readable_trace_file.open(readable_trace_file.c_str(), std::ios_base::out);
+  
   // write config file in text format : no of threads
   // thread no and start instruction for each thread
   sprintf(file_path, "%s%s%s.txt", trace_path.c_str(), kernel_name.c_str(), trace_name.c_str());
@@ -1194,6 +1205,7 @@ void trace::X86TraceGenerator::event(const trace::TraceEvent & event)
   // current block id
   int cur_block = event.blockId.y * gridDimX + event.blockId.x;
 
+  txt_readable_trace_file << "0x" << std::hex << (event.PC << 3) + INST_START_ADDR << "\t" << event.instruction->toString() << endl;
 
   ////////////////////////////////////////////////////////////
   if (!tracegen) {
@@ -2282,6 +2294,10 @@ void trace::X86TraceGenerator::finalize()
   info_file << "kernel_count " << kernel_inst_count << "\n";
   info_file.close();
 
+  if(txt_readable_trace_file.is_open()){
+      txt_readable_trace_file.close();
+  }
+  
 }
 
 

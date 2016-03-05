@@ -123,7 +123,8 @@ namespace trace {
       int last_block_id;
 
       std::ofstream txt_kernel_config_file;
-
+      std::ofstream txt_readable_trace_file;
+      
       std::unordered_map<std::string, int> m_kernel_register_map;
       std::unordered_map<std::string, int> m_kernel_sharedmem_map;
       std::string m_compute;
