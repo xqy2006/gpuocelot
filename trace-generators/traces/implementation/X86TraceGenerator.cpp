@@ -1168,6 +1168,11 @@ void trace::X86TraceGenerator::initialize(const executive::ExecutableKernel& ker
   if (txt_config_file.fail())
     assert(0);
 
+  txt_config_file << "newptx\n";
+  txt_config_file << TRACEGEN_VER << "\n";
+  txt_config_file << max_block << "\n";
+  txt_config_file << num_total_warps << "\n"
+
   sprintf(file_path, "%s%s%s_info.txt", trace_path.c_str(), kernel_name.c_str(), trace_name.c_str());
   info_file.open(file_path);
 

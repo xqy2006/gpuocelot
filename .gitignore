@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# Ramyad
+*.os
+*.log
+*.pyc
+.release_build/
+.sconsign.dblite
+.sconf_temp/
