@@ -18,6 +18,7 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     libXmu-dev \
     make \
     scons \
+    libcuda1-352 \
     vim \ 
     wget && \
     apt-mark hold libbison-dev bison 
