@@ -29,7 +29,7 @@ RUN mkdir /tmp/cuda_toolkit && \
     chmod +x cudatoolkit_4.2.9_linux_64_ubuntu11.04.run && \
     ./cudatoolkit_4.2.9_linux_64_ubuntu11.04.run --tar mxvf && \
     perl install-linux.pl auto && \
-    dpkg -i libcuda1-352_352.63-0ubuntu0.14.04.1_amd64.deb && \
+    dpkg -i libcuda1-346_352.63-0ubuntu3_amd64.deb && \
     cd / && rm -rf /tmp/cuda_toolkit && \
     printf "/usr/local/cuda/lib64\n/usr/local/cuda/lib" > /etc/ld.so.conf.d/cuda.conf && \
     ldconfig
