@@ -18,7 +18,6 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     libXmu-dev \
     make \
     scons \
-    libcuda1-352 \
     vim \ 
     wget && \
     apt-mark hold libbison-dev bison 
@@ -26,11 +25,11 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
 RUN mkdir /tmp/cuda_toolkit && \
     cd /tmp/cuda_toolkit && \
     wget http://developer.download.nvidia.com/compute/cuda/4_2/rel/toolkit/cudatoolkit_4.2.9_linux_64_ubuntu11.04.run && \
-    wget http://security.ubuntu.com/ubuntu/pool/multiverse/n/nvidia-graphics-drivers-352/libcuda1-346_352.63-0ubuntu3_amd64.deb && \
+    wget http://security.ubuntu.com/ubuntu/pool/multiverse/n/nvidia-graphics-drivers-384/libcuda1-375_384.130-0ubuntu0.14.04.1_amd64.deb && \
     chmod +x cudatoolkit_4.2.9_linux_64_ubuntu11.04.run && \
     ./cudatoolkit_4.2.9_linux_64_ubuntu11.04.run --tar mxvf && \
     perl install-linux.pl auto && \
-    dpkg -i libcuda1-346_352.63-0ubuntu3_amd64.deb && \
+    dpkg -i libcuda1-375_384.130-0ubuntu0.14.04.1_amd64.deb && \
     cd / && rm -rf /tmp/cuda_toolkit && \
     printf "/usr/local/cuda/lib64\n/usr/local/cuda/lib" > /etc/ld.so.conf.d/cuda.conf && \
     ldconfig
