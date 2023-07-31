@@ -19,6 +19,7 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     make \
     scons \
     vim \ 
+    libcuda1-384 \ 
     wget && \
     apt-mark hold libbison-dev bison 
 
